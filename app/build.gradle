@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.0"
 
     defaultConfig {
-        applicationId "com.lianglliang.android.fastdev"
+        applicationId "com.liangliang.android.fastdev"
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 1

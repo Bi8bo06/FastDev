@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--基类-->
+    <attr name="contentOrientation" format="integer">
+        <enum name="horizontal" value="0" />
+        <enum name="vertical" value="1" />
+    </attr>
+    <attr name="isNeedTips" format="boolean" />
+    <attr name="tips" format="string" />
+    <attr name="tipsColor" format="color" />
+    <attr name="tipsSize" format="dimension" />
+    <attr name="contentBackground" format="color" />
+    <attr name="isNeedImg" format="boolean" />
+    <attr name="src" format="reference" />
+
+    <!--加载页-->
+    <declare-styleable name="LoadingLayout">
+        <attr name="contentOrientation" />
+        <attr name="isNeedTips" />
+        <attr name="tips" />
+        <attr name="tipsColor" />
+        <attr name="tipsSize" />
+        <attr name="contentBackground" />
+        <attr name="indeterminateDrawable" format="reference" />
+        <attr name="isIndeterminate" format="boolean" />
+        <attr name="pbWidth" format="dimension" />
+        <attr name="pbHeight" format="dimension" />
+    </declare-styleable>
+
+    <!--错误页-->
+    <declare-styleable name="ErrorLayout">
+        <attr name="isNeedImg" />
+        <attr name="src" />
+        <attr name="contentOrientation" />
+        <attr name="isNeedTips" />
+        <attr name="tips" />
+        <attr name="tipsColor" />
+        <attr name="tipsSize" />
+        <attr name="contentBackground" />
+    </declare-styleable>
+
+    <!--无数据页-->
+    <declare-styleable name="NoDataLayout">
+        <attr name="isNeedImg" />
+        <attr name="src" />
+        <attr name="contentOrientation" />
+        <attr name="isNeedTips" />
+        <attr name="tips" />
+        <attr name="tipsColor" />
+        <attr name="tipsSize" />
+        <attr name="contentBackground" />
+    </declare-styleable>
+
+    <!--标题栏基类-->
+    <attr name="isNeedBackBtn" format="boolean" />
+    <attr name="backDrawable" format="reference" />
+    <attr name="backText" format="string" />
+    <attr name="backTextColor" format="color" />
+    <attr name="backTextSize" format="dimension" />
+    <attr name="isShowDivideLine" format="boolean" />
+    <attr name="divideLineColor" format="color" />
+    <attr name="divideLineHeight" format="dimension" />
+    <attr name="titleBarBackground" format="reference|color" />
+    <attr name="isNeedElevation" format="boolean" />
+    <attr name="elevationVale" format="dimension" />
+
+    <!--标题栏-->
+    <declare-styleable name="TitleBarLayout">
+        <attr name="isNeedBackBtn" />
+        <attr name="backDrawable" />
+        <attr name="backText" />
+        <attr name="backTextColor" />
+        <attr name="backTextSize" />
+        <attr name="titleText" format="string" />
+        <attr name="titleTextColor" format="color" />
+        <attr name="titleTextSize" format="dimension" />
+        <attr name="isShowDivideLine" />
+        <attr name="divideLineColor" />
+        <attr name="divideLineHeight" />
+        <attr name="titleBarBackground" />
+        <attr name="isNeedElevation" />
+        <attr name="elevationVale" />
+        <attr name="isNeedExpandView" format="boolean" />
+        <attr name="expandViewId" format="reference" />
+    </declare-styleable>
+
+    <!--搜索标题栏-->
+    <declare-styleable name="SearchTitleBarLayout">
+        <attr name="isNeedBackBtn" />
+        <attr name="backDrawable" />
+        <attr name="backText" />
+        <attr name="backTextColor" />
+        <attr name="backTextSize" />
+        <attr name="isShowDivideLine" />
+        <attr name="divideLineColor" />
+        <attr name="divideLineHeight" />
+        <attr name="titleBarBackground" />
+        <attr name="isNeedElevation" />
+        <attr name="elevationVale" />
+        <attr name="isNeedCleanBtn" format="boolean" />
+        <attr name="searchDrawable" format="reference"/>
+        <attr name="cleanDrawable" format="reference"/>
+        <attr name="inputBackground" format="reference|color"/>
+        <attr name="inputHint" format="string" />
+        <attr name="inputHintTextColor" format="color" />
+        <attr name="inputText" format="string" />
+        <attr name="inputTextColor" format="color" />
+        <attr name="inputTextSize" format="dimension" />
+        <attr name="isShowVerticalLine" format="boolean" />
+        <attr name="verticalLineBackground" format="reference|color" />
+    </declare-styleable>
+</resources>
