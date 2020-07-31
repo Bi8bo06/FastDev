@@ -29,20 +29,31 @@ import com.liangliang.android.core.utils.DensityUtils;
 /**
  * 标题栏布局
  */
-public class TitleBarLayout extends LinearLayout{
-
-    /** 标题栏配置 */
+public class TitleBarLayout extends LinearLayout {
+    /**
+     * 标题栏配置
+     */
     private TitleBarLayoutConfig mConfig = new TitleBarLayoutConfig();
 
-    /** 返回按钮布局 */
+    /**
+     * 返回按钮布局
+     */
     private LinearLayout mBackLayout;
-    /** 返回按钮 */
+    /**
+     * 返回按钮
+     */
     private TextView mBackBtn;
-    /** 标题 */
+    /**
+     * 标题
+     */
     private TextView mTitleTextView;
-    /** 扩展区布局 */
+    /**
+     * 扩展区布局
+     */
     private LinearLayout mExpandLinearLayout;
-    /** 分割线 */
+    /**
+     * 分割线
+     */
     private View mDivideLineView;
 
     public TitleBarLayout(Context context) {
@@ -67,7 +78,7 @@ public class TitleBarLayout extends LinearLayout{
     }
 
     private void init(AttributeSet attrs) {
-        if (BaseApplication.get() != null){
+        if (BaseApplication.get() != null) {
             mConfig = BaseApplication.get().getBaseLayoutConfig().getTitleBarLayoutConfig();
         }
         findViews();
@@ -85,7 +96,7 @@ public class TitleBarLayout extends LinearLayout{
 
     private void config(AttributeSet attrs) {
         TypedArray typedArray = null;
-        if (attrs != null){
+        if (attrs != null) {
             typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.TitleBarLayout);
         }
 
@@ -94,16 +105,16 @@ public class TitleBarLayout extends LinearLayout{
                 : typedArray.getBoolean(R.styleable.TitleBarLayout_isNeedBackBtn, mConfig.getIsNeedBackBtn()));
 
         Drawable backDrawable = typedArray == null ? null : typedArray.getDrawable(R.styleable.TitleBarLayout_backDrawable);
-        if (backDrawable != null){
+        if (backDrawable != null) {
             mBackBtn.setCompoundDrawablesWithIntrinsicBounds(backDrawable, null, null, null);
-        }else if (mConfig.getBackBtnResId() != 0){
+        } else if (mConfig.getBackBtnResId() != 0) {
             mBackBtn.setCompoundDrawablesWithIntrinsicBounds(mConfig.getBackBtnResId(), 0, 0, 0);
         }
 
         String backText = typedArray == null ? "" : typedArray.getString(R.styleable.TitleBarLayout_backText);
         if (!TextUtils.isEmpty(backText)) {
             setBackBtnName(backText);
-        }else if (!TextUtils.isEmpty(mConfig.getBackBtnText())){
+        } else if (!TextUtils.isEmpty(mConfig.getBackBtnText())) {
             setBackBtnName(mConfig.getBackBtnText());
         }
 
@@ -115,9 +126,9 @@ public class TitleBarLayout extends LinearLayout{
         }
 
         int backTextSize = typedArray == null ? 0 : typedArray.getDimensionPixelSize(R.styleable.TitleBarLayout_backTextSize, 0);
-        if (backTextSize != 0){
+        if (backTextSize != 0) {
             setBackBtnTextSize(DensityUtils.px2sp(getContext(), backTextSize));
-        }else if(mConfig.getBackBtnTextSize() != 0){
+        } else if (mConfig.getBackBtnTextSize() != 0) {
             setBackBtnTextSize(mConfig.getBackBtnTextSize());
         }
 
@@ -134,9 +145,9 @@ public class TitleBarLayout extends LinearLayout{
         }
 
         int titleTextSize = typedArray == null ? 0 : typedArray.getDimensionPixelSize(R.styleable.TitleBarLayout_titleTextSize, 0);
-        if (titleTextSize != 0){
+        if (titleTextSize != 0) {
             setTitleTextSize(DensityUtils.px2sp(getContext(), titleTextSize));
-        }else if(mConfig.getTitleTextSize() != 0){
+        } else if (mConfig.getTitleTextSize() != 0) {
             setTitleTextSize(mConfig.getTitleTextSize());
         }
 
@@ -145,23 +156,23 @@ public class TitleBarLayout extends LinearLayout{
         mDivideLineView.setVisibility(isShowDivideLine ? View.VISIBLE : View.GONE);
 
         Drawable divideLineDrawable = typedArray == null ? null : typedArray.getDrawable(R.styleable.TitleBarLayout_divideLineColor);
-        if (divideLineDrawable != null){
+        if (divideLineDrawable != null) {
             setDivideLineColor(divideLineDrawable);
-        }else if(mConfig.getDivideLineColor() != 0){
+        } else if (mConfig.getDivideLineColor() != 0) {
             setDivideLineColor(mConfig.getDivideLineColor());
         }
 
         int divideLineHeight = typedArray == null ? 0 : typedArray.getDimensionPixelSize(R.styleable.TitleBarLayout_divideLineHeight, 0);
-        if (divideLineHeight > 0){
+        if (divideLineHeight > 0) {
             setDivideLineHeight(DensityUtils.px2dp(getContext(), divideLineHeight));
-        }else if(mConfig.getDivideLineHeight() > 0){
+        } else if (mConfig.getDivideLineHeight() > 0) {
             setDivideLineHeight(mConfig.getDivideLineHeight());
         }
 
         Drawable drawableBackground = typedArray == null ? null : typedArray.getDrawable(R.styleable.TitleBarLayout_titleBarBackground);
-        if (drawableBackground != null){
+        if (drawableBackground != null) {
             setBackground(drawableBackground);
-        } else if (mConfig.getBackgroundResId() != 0){
+        } else if (mConfig.getBackgroundResId() != 0) {
             setBackgroundResource(mConfig.getBackgroundResId());
         } else {
             setBackgroundColor(ContextCompat.getColor(getContext(), mConfig.getBackgroundColor() == 0 ? android.R.color.holo_blue_light : mConfig.getBackgroundColor()));
@@ -177,86 +188,96 @@ public class TitleBarLayout extends LinearLayout{
         // 默认不需要右侧扩展区域
         needExpandView(typedArray != null && typedArray.getBoolean(R.styleable.TitleBarLayout_isNeedExpandView, false));
         int expandViewId = typedArray == null ? 0 : typedArray.getResourceId(R.styleable.TitleBarLayout_expandViewId, 0);
-        if (expandViewId > 0){
+        if (expandViewId > 0) {
             View view = LayoutInflater.from(getContext()).inflate(expandViewId, null);
-            if (view != null){
+            if (view != null) {
                 addExpandView(view);
             }
         }
 
-        if (typedArray != null){
+        if (typedArray != null) {
             typedArray.recycle();
         }
     }
 
     /**
      * 需要显示返回按钮
+     *
      * @param isNeed 是否需要
      */
-    public void needBackButton(boolean isNeed){
+    public void needBackButton(boolean isNeed) {
         mBackLayout.setVisibility(isNeed ? View.VISIBLE : View.GONE);
     }
 
     /**
      * 设置返回按钮的透明度
+     *
      * @param alpha 透明度
      */
-    public void setBackButtonAlpha(@FloatRange(from=0.0, to=1.0) float alpha){
+    public void setBackButtonAlpha(@FloatRange(from = 0.0, to = 1.0) float alpha) {
         mBackLayout.setAlpha(alpha);
     }
 
-    /** 请重写实现返回按钮监听 */
+    /**
+     * 请重写实现返回按钮监听
+     */
     public void setOnBackBtnClickListener(OnClickListener listener) {
         mBackLayout.setOnClickListener(listener);
     }
 
     /**
      * 替换默认的返回按钮
+     *
      * @param view 返回按钮的View
      */
-    public void replaceBackBtn(View view){
+    public void replaceBackBtn(View view) {
         mBackLayout.removeAllViews();
         mBackLayout.addView(view);
     }
 
     /**
      * 设置返回按钮文字
+     *
      * @param str 文字描述
      */
-    public void setBackBtnName(String str){
+    public void setBackBtnName(String str) {
         mBackBtn.setText(str);
     }
 
     /**
      * 设置返回按钮文字
+     *
      * @param strResId 文字资源id
      */
-    public void setBackBtnName(@StringRes int strResId){
+    public void setBackBtnName(@StringRes int strResId) {
         mBackBtn.setText(getContext().getString(strResId));
     }
 
     /**
      * 设置返回按钮文字颜色
+     *
      * @param colorRes 颜色资源id
      */
-    public void setBackBtnTextColor(@ColorRes int colorRes){
+    public void setBackBtnTextColor(@ColorRes int colorRes) {
         mBackBtn.setTextColor(ContextCompat.getColor(getContext(), colorRes));
     }
 
     /**
      * 设置返回按钮文字颜色
+     *
      * @param color 颜色
      */
-    public void setBackBtnTextColorInt(@ColorInt int color){
+    public void setBackBtnTextColorInt(@ColorInt int color) {
         mBackBtn.setTextColor(color);
     }
 
     /**
      * 设置返回按钮文字颜色
+     *
      * @param colorStateList 颜色
      */
-    public void setBackBtnTextColor(ColorStateList colorStateList){
-        if (colorStateList == null){
+    public void setBackBtnTextColor(ColorStateList colorStateList) {
+        if (colorStateList == null) {
             return;
         }
         mBackBtn.setTextColor(colorStateList);
@@ -264,50 +285,56 @@ public class TitleBarLayout extends LinearLayout{
 
     /**
      * 设置返回按钮文字大小
+     *
      * @param size 文字大小（单位sp）
      */
-    public void setBackBtnTextSize(float size){
+    public void setBackBtnTextSize(float size) {
         mBackBtn.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
     }
 
     /**
      * 设置标题名
+     *
      * @param title 标题名
      */
-    public void setTitleName(String title){
+    public void setTitleName(String title) {
         mTitleTextView.setText(title);
     }
 
     /**
      * 设置标题名
+     *
      * @param strResId 文字资源id
      */
-    public void setTitleName(@StringRes int strResId){
+    public void setTitleName(@StringRes int strResId) {
         mTitleTextView.setText(getContext().getString(strResId));
     }
 
     /**
      * 设置标题文字颜色
+     *
      * @param colorRes 颜色资源id
      */
-    public void setTitleTextColor(@ColorRes int colorRes){
+    public void setTitleTextColor(@ColorRes int colorRes) {
         mTitleTextView.setTextColor(ContextCompat.getColor(getContext(), colorRes));
     }
 
     /**
      * 设置标题文字颜色
+     *
      * @param color 颜色
      */
-    public void setTitleTextColorInt(@ColorInt int color){
+    public void setTitleTextColorInt(@ColorInt int color) {
         mTitleTextView.setTextColor(color);
     }
 
     /**
      * 设置文字颜色
+     *
      * @param colorStateList 颜色
      */
-    public void setTitleTextColor(ColorStateList colorStateList){
-        if (colorStateList == null){
+    public void setTitleTextColor(ColorStateList colorStateList) {
+        if (colorStateList == null) {
             return;
         }
         mTitleTextView.setTextColor(colorStateList);
@@ -315,67 +342,82 @@ public class TitleBarLayout extends LinearLayout{
 
     /**
      * 设置标题文字大小
+     *
      * @param size 文字大小（单位sp）
      */
-    public void setTitleTextSize(float size){
+    public void setTitleTextSize(float size) {
         mTitleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
     }
 
     /**
      * 设置标题的透明度
+     *
      * @param alpha 透明度
      */
-    public void setTitleAlpha(@FloatRange(from=0.0, to=1.0) float alpha){
+    public void setTitleAlpha(@FloatRange(from = 0.0, to = 1.0) float alpha) {
         mTitleTextView.setAlpha(alpha);
     }
 
     /**
      * 需要右侧扩展区
+     *
      * @param isNeed 是否需要
      */
-    public void needExpandView(boolean isNeed){
+    public void needExpandView(boolean isNeed) {
         mExpandLinearLayout.setVisibility(isNeed ? View.VISIBLE : View.GONE);
     }
 
     /**
      * 添加扩展区域的View
+     *
      * @param view 控件
      */
-    public void addExpandView(View view){
+    public void addExpandView(View view) {
         mExpandLinearLayout.addView(view);
         needExpandView(true);
     }
 
-    /** 获取扩展区域的View */
-    public View getExpandView(){
+    /**
+     * 获取扩展区域的View
+     */
+    public View getExpandView() {
         return mExpandLinearLayout;
     }
 
-    /** 隐藏分割线 */
-    public void goneDivideLine(){
+    /**
+     * 隐藏分割线
+     */
+    public void goneDivideLine() {
         mDivideLineView.setVisibility(View.GONE);
     }
 
-    /** 设置分割线颜色 */
-    public void setDivideLineColor(@ColorRes int colorRes){
+    /**
+     * 设置分割线颜色
+     */
+    public void setDivideLineColor(@ColorRes int colorRes) {
         mDivideLineView.setBackgroundColor(ContextCompat.getColor(getContext(), colorRes));
     }
 
-    /** 设置分割线颜色 */
-    public void setDivideLineColorInt(@ColorInt int color){
+    /**
+     * 设置分割线颜色
+     */
+    public void setDivideLineColorInt(@ColorInt int color) {
         mDivideLineView.setBackgroundColor(color);
     }
 
-    /** 设置分割线颜色 */
-    public void setDivideLineColor(Drawable drawable){
+    /**
+     * 设置分割线颜色
+     */
+    public void setDivideLineColor(Drawable drawable) {
         mDivideLineView.setBackground(drawable);
     }
 
     /**
      * 设置分割线高度
+     *
      * @param height 高度（单位dp）
      */
-    public void setDivideLineHeight(float height){
+    public void setDivideLineHeight(float height) {
         ViewGroup.LayoutParams layoutParams = mDivideLineView.getLayoutParams();
         layoutParams.height = DensityUtils.dp2px(getContext(), height);
         mDivideLineView.setLayoutParams(layoutParams);

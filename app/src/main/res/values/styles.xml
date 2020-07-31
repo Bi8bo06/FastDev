@@ -1,10 +1,41 @@
-<resources>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- 基础主题 -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/color_00a0e9</item>
+        <item name="colorPrimaryDark">@color/color_00a0e9</item>
+        <item name="colorAccent">@color/color_00a0e9</item>
+    </style>
+
+    <!-- 启动页主题 -->
+    <style name="AppTheme.Splash" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="android:windowTranslucentStatus" tools:ignore="NewApi">true</item>
+    </style>
+
+    <!-- 沉浸式页面主题 -->
+    <style name="AppTheme.Immersive" parent="AppTheme">
+        <item name="android:windowTranslucentStatus" tools:ignore="NewApi">true</item>
+    </style>
+
+    <!-- 折叠后标题 -->
+    <style name="TitleCollapsedStyle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <!-- 展开后标题 -->
+    <style name="TitleExpandedStyle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- 元素动画 -->
+    <style name="AppTheme.Transitions" parent="AppTheme">
+        <item name="android:windowContentTransitions" tools:ignore="NewApi">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap" tools:ignore="NewApi">false</item>
+        <item name="android:windowAllowReturnTransitionOverlap" tools:ignore="NewApi">false</item>
     </style>
 
 </resources>

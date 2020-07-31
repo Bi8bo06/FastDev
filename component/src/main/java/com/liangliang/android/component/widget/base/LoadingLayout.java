@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat;
 import com.liangliang.android.component.R;
 import com.liangliang.android.component.base.application.BaseApplication;
 import com.liangliang.android.component.base.application.config.BaseLayoutConfig;
+import com.liangliang.android.component.base.application.config.LoadingLayoutConfig;
 import com.liangliang.android.core.utils.DensityUtils;
 
 /**

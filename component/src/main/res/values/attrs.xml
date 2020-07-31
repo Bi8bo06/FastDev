@@ -109,4 +109,11 @@
         <attr name="isShowVerticalLine" format="boolean" />
         <attr name="verticalLineBackground" format="reference|color" />
     </declare-styleable>
+
+    <declare-styleable name="IndexBar">
+        <attr name="indexTextColor" format="color" />
+        <attr name="indexTextSize" format="dimension" />
+        <attr name="isTextBold" format="boolean" />
+        <attr name="pressBackgroundColor" format="reference|color" />
+    </declare-styleable>
 </resources>
