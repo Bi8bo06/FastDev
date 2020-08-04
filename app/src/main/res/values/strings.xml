@@ -43,4 +43,11 @@
     <string name="dialog_test_tags_ars">阿森纳</string>
     <string name="dialog_test_tags_che">切尔西</string>
     <string name="dialog_test_tags_liv">利物浦</string>
+
+    <!-- 身份证测试类 -->
+    <string name="idcard_input_title">身份证号：</string>
+    <string name="idcard_input_hint">请输入身份证号</string>
+    <string name="idcard_check">校验</string>
+    <string name="idcard_empty_tips">请输入身份证号</string>
+    <string name="idcard_length_error">请输入18位身份证号</string>
 </resources>

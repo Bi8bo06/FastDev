@@ -10,10 +10,11 @@ import java.security.MessageDigest;
 public class MD5 {
     /**
      * 信息摘要
+     *
      * @param content 内容
      */
     public static String md(String content) {
-        if (TextUtils.isEmpty(content)){
+        if (TextUtils.isEmpty(content)) {
             return null;
         }
 

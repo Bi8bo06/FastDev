@@ -11,11 +11,11 @@ import android.net.ConnectivityManager;
 public class ConnectBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (context == null || intent == null){
+        if (context == null || intent == null) {
             return;
         }
         String action = intent.getAction();
-        if (action == null){
+        if (action == null) {
             return;
         }
         try {
@@ -24,7 +24,7 @@ public class ConnectBroadcastReceiver extends BroadcastReceiver {
                 NetworkManager.get().updateNet(manager);
                 NetworkManager.get().notifyNetworkListeners();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

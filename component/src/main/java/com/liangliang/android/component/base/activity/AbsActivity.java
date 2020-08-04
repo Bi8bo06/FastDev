@@ -9,9 +9,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.liangliang.android.component.base.application.BaseApplication;
+import com.liangliang.android.component.base.fragment.IFragmentBackPressed;
+import com.liangliang.android.component.base.fragment.LazyFragment;
 import com.liangliang.android.component.event.ActivityFinishEvent;
-import com.liangliang.android.component.fragment.IFragmentBackPressed;
-import com.liangliang.android.component.fragment.LazyFragment;
 import com.liangliang.android.core.utils.ReflectUtils;
 import com.trello.rxlifecycle4.components.support.RxAppCompatActivity;
 

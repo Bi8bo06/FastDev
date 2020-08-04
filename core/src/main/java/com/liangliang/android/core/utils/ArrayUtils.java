@@ -26,11 +26,12 @@ public class ArrayUtils {
 
     /**
      * 去除重复数据
+     *
      * @param array 数组
-     * @param cls 数组内的属性类型
+     * @param cls   数组内的属性类型
      */
     public static <T> T[] deduplication(T[] array, Class<? extends T> cls) {
-        if (isEmpty(array)){
+        if (isEmpty(array)) {
             return null;
         }
 
@@ -41,10 +42,11 @@ public class ArrayUtils {
 
     /**
      * 去除重复数据
+     *
      * @param list 列表
      */
     public static <T> List<T> deduplication(List<T> list) {
-        if (isEmpty(list)){
+        if (isEmpty(list)) {
             return new ArrayList<>();
         }
 
@@ -54,38 +56,43 @@ public class ArrayUtils {
 
     /**
      * 获取列表数据长度
+     *
      * @param list 列表
      */
-    public static <T> int getSize(List<T> list){
+    public static <T> int getSize(List<T> list) {
         return isEmpty(list) ? 0 : list.size();
     }
 
     /**
      * 获取数组数据长度
+     *
      * @param array 数组
      */
-    public static <T> int getSize(T[] array){
+    public static <T> int getSize(T[] array) {
         return isEmpty(array) ? 0 : array.length;
     }
 
     /**
      * 列表是否为空
+     *
      * @param list 列表
      */
-    public static <T> boolean isEmpty(List<T> list){
+    public static <T> boolean isEmpty(List<T> list) {
         return list == null || list.size() == 0;
     }
 
     /**
      * 数组是否为空
+     *
      * @param array 数组
      */
-    public static <T> boolean isEmpty(T[] array){
+    public static <T> boolean isEmpty(T[] array) {
         return array == null || array.length == 0;
     }
 
     /**
      * 数组转列表
+     *
      * @param array 数组
      */
     public static <T> List<T> arrayToList(T[] array) {
@@ -97,8 +104,9 @@ public class ArrayUtils {
 
     /**
      * 列表转数组
+     *
      * @param list 列表
-     * @param cls 列表内的属性类型
+     * @param cls  列表内的属性类型
      */
     @SuppressWarnings("unchecked")
     public static <T> T[] listToArray(List<T> list, Class<? extends T> cls) {
@@ -110,7 +118,8 @@ public class ArrayUtils {
 
     /**
      * 选择排序
-     * @param list 列表
+     *
+     * @param list  列表
      * @param isAsc 是否升序
      */
     public static List<Integer> sortByChoose(List<Integer> list, boolean isAsc) {
@@ -128,6 +137,7 @@ public class ArrayUtils {
 
     /**
      * 选择排序
+     *
      * @param array 数组
      * @param isAsc 是否升序
      */
@@ -153,7 +163,8 @@ public class ArrayUtils {
 
     /**
      * 插入排序
-     * @param list 列表
+     *
+     * @param list  列表
      * @param isAsc 是否升序
      */
     public static List<Integer> sortByInsert(List<Integer> list, boolean isAsc) {
@@ -171,6 +182,7 @@ public class ArrayUtils {
 
     /**
      * 插入排序
+     *
      * @param array 数组
      * @param isAsc 是否升序
      */
@@ -193,7 +205,8 @@ public class ArrayUtils {
 
     /**
      * 冒泡排序
-     * @param list 列表
+     *
+     * @param list  列表
      * @param isAsc 是否升序
      */
     public static List<Integer> sortByBubble(List<Integer> list, boolean isAsc) {
@@ -211,6 +224,7 @@ public class ArrayUtils {
 
     /**
      * 冒泡排序
+     *
      * @param array 数组
      * @param isAsc 是否升序
      */
@@ -230,12 +244,13 @@ public class ArrayUtils {
 
     /**
      * 获取列表里的最大值
+     *
      * @param list 列表
      */
-    public static long getMaxLong(List<Long> list){
+    public static long getMaxLong(List<Long> list) {
         long max = 0L;
         for (Long data : list) {
-            if (max < data){
+            if (max < data) {
                 max = data;
             }
         }
@@ -244,20 +259,22 @@ public class ArrayUtils {
 
     /**
      * 获取数组里的最大值
+     *
      * @param array 数组
      */
-    public static long getMaxLong(Long[] array){
+    public static long getMaxLong(Long[] array) {
         return getMaxLong(arrayToList(array));
     }
 
     /**
      * 获取列表里的最大值
+     *
      * @param list 列表
      */
-    public static int getMaxInt(List<Integer> list){
+    public static int getMaxInt(List<Integer> list) {
         int max = 0;
         for (int data : list) {
-            if (max < data){
+            if (max < data) {
                 max = data;
             }
         }
@@ -266,20 +283,22 @@ public class ArrayUtils {
 
     /**
      * 获取数组里的最大值
+     *
      * @param array 数组
      */
-    public static int getMaxInt(Integer[] array){
+    public static int getMaxInt(Integer[] array) {
         return getMaxInt(arrayToList(array));
     }
 
     /**
      * 获取列表的最小值
+     *
      * @param list 列表
      */
-    public static long getMinLong(List<Long> list){
+    public static long getMinLong(List<Long> list) {
         long min = 0L;
         for (Long data : list) {
-            if (min > data){
+            if (min > data) {
                 min = data;
             }
         }
@@ -288,20 +307,22 @@ public class ArrayUtils {
 
     /**
      * 获取数组的最小值
+     *
      * @param array 数组
      */
-    public static long getMinLong(Long[] array){
+    public static long getMinLong(Long[] array) {
         return getMinLong(arrayToList(array));
     }
 
     /**
      * 获取列表的最小值
+     *
      * @param list 列表
      */
-    public static int getMinInt(List<Integer> list){
+    public static int getMinInt(List<Integer> list) {
         int min = 0;
         for (int data : list) {
-            if (min > data){
+            if (min > data) {
                 min = data;
             }
         }
@@ -310,48 +331,53 @@ public class ArrayUtils {
 
     /**
      * 获取数组的最小值
+     *
      * @param array 数组
      */
-    public static int getMinInt(Integer[] array){
+    public static int getMinInt(Integer[] array) {
         return getMinInt(arrayToList(array));
     }
 
     /**
      * 将数据分组（只匹配标题的第一位字段），泛型T可以为String或者实现了Groupable的任意类
+     *
      * @param source 原始数据列表
      * @param groups 分组标题列表
      */
-    public static <T> List<T> groupList(List<T> source, List<String> groups){
+    public static <T> List<T> groupList(List<T> source, List<String> groups) {
         return groupList(source, groups, 1);
     }
 
     /**
      * 将数据分组（只匹配标题的第一位字段），泛型T可以为String或者实现了Groupable的任意类
+     *
      * @param source 原始数据数组
      * @param groups 分组标题数组
      */
-    public static <T> T[] groupList(T[] source, String[] groups){
+    public static <T> T[] groupList(T[] source, String[] groups) {
         return groupList(source, groups, 1);
     }
 
     /**
      * 将数据分组，泛型T可以为String或者实现了Groupable的任意类
-     * @param source 原始数据数组
-     * @param groups 分组标题数组
+     *
+     * @param source        原始数据数组
+     * @param groups        分组标题数组
      * @param compareLength 匹配长度
      */
     @SuppressWarnings("unchecked")
-    public static <T> T[] groupList(T[] source, String[] groups, @IntRange(from = 1) int compareLength){
+    public static <T> T[] groupList(T[] source, String[] groups, @IntRange(from = 1) int compareLength) {
         return (T[]) groupList(arrayToList(source), arrayToList(groups), compareLength).toArray();
     }
 
     /**
      * 将数据分组，泛型T可以为String或者实现了Groupable的任意类
-     * @param source 原始数据列表
-     * @param groups 分组标题列表
+     *
+     * @param source        原始数据列表
+     * @param groups        分组标题列表
      * @param compareLength 匹配长度
      */
-    public static <T> List<T> groupList(List<T> source, List<String> groups, @IntRange(from = 1) int compareLength){
+    public static <T> List<T> groupList(List<T> source, List<String> groups, @IntRange(from = 1) int compareLength) {
         if (isEmpty(source) || isEmpty(groups) || compareLength <= 0) {
             return source;
         }
@@ -390,7 +416,7 @@ public class ArrayUtils {
         while (iterator.hasNext()) {// 遍历map将分组数据装入结果集
             entry = iterator.next();
             List<T> list = entry.getValue();
-            if (!ArrayUtils.isEmpty(list)){
+            if (!ArrayUtils.isEmpty(list)) {
                 results.addAll(list);
             }
         }
@@ -399,11 +425,12 @@ public class ArrayUtils {
 
     /**
      * 通过索引文字来获取原数据列表里的首个item位置
-     * @param source 原数据列表
+     *
+     * @param source    原数据列表
      * @param indexText 索引文字
      */
-    public static <T> int getPositionByIndex(List<T> source, List<String> groups, String indexText){
-        if (isEmpty(source) || TextUtils.isEmpty(indexText)){
+    public static <T> int getPositionByIndex(List<T> source, List<String> groups, String indexText) {
+        if (isEmpty(source) || TextUtils.isEmpty(indexText)) {
             return 0;
         }
         for (int i = 0; i < source.size(); i++) {
@@ -413,12 +440,12 @@ public class ArrayUtils {
                 if (TextUtils.isEmpty(item)) {
                     continue;
                 }
-                if (item.length() <= indexText.length()){// 列表文字长度小于等于索引字符长度
-                    if (item.equals(indexText.substring(0, item.length()))){
+                if (item.length() <= indexText.length()) {// 列表文字长度小于等于索引字符长度
+                    if (item.equals(indexText.substring(0, item.length()))) {
                         return i;
                     }
-                }else {
-                    if (indexText.equals(item.substring(0, indexText.length()))){
+                } else {
+                    if (indexText.equals(item.substring(0, indexText.length()))) {
                         return i;
                     }
                 }
@@ -427,7 +454,7 @@ public class ArrayUtils {
 
         // 都没有匹配到说明数据里没有indexText的内容，则匹配他的前一位
         int position = groups.indexOf(indexText);
-        if (position <= 0){
+        if (position <= 0) {
             return 0;
         }
         return getPositionByIndex(source, groups, groups.get(position - 1));

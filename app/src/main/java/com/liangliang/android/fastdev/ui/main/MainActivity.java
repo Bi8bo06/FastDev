@@ -23,6 +23,9 @@ import com.liangliang.android.fastdev.App;
 import com.liangliang.android.fastdev.R;
 import com.liangliang.android.fastdev.bean.MainBean;
 import com.liangliang.android.fastdev.ui.dialog.DialogTestActivity;
+import com.liangliang.android.fastdev.ui.idcard.IdcardTestActivity;
+import com.liangliang.android.fastdev.ui.image.GlideActivity;
+import com.liangliang.android.fastdev.ui.toast.ToastTestActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,7 +54,10 @@ public class MainActivity extends BaseActivity {
             "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#"};
 
     private static final List<MainBean> MAIN_DATA_LIST = Arrays.asList(
-            new MainBean("弹框测试", "T", DialogTestActivity.class)
+            new MainBean("Glide测试", "G", GlideActivity.class),
+            new MainBean("身份证号码测试类", "S", IdcardTestActivity.class),
+            new MainBean("弹框测试", "T", DialogTestActivity.class),
+            new MainBean("Toast测试类", "T", ToastTestActivity.class)
     );
 
     /**

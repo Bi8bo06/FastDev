@@ -36,6 +36,7 @@ import java.lang.annotation.RetentionPolicy;
 public class BitmapUtils {
     /**
      * bitmap转为base64
+     *
      * @param bitmap 图片
      */
     public static String bitmapToBase64Default(Bitmap bitmap) {
@@ -44,9 +45,10 @@ public class BitmapUtils {
 
     /**
      * bitmap转为base64
-     * @param bitmap 图片
+     *
+     * @param bitmap  图片
      * @param quality 质量
-     * @param flags 转码类型 例如Base64.DEFAULT、Base64.NO_WRAP等
+     * @param flags   转码类型 例如Base64.DEFAULT、Base64.NO_WRAP等
      */
     public static String bitmapToBase64(Bitmap bitmap, int quality, int flags) {
         String result = "";
@@ -79,6 +81,7 @@ public class BitmapUtils {
 
     /**
      * base64转为bitmap
+     *
      * @param base64Data base64字符串
      */
     public static Bitmap base64ToBitmap(String base64Data) {
@@ -88,12 +91,13 @@ public class BitmapUtils {
 
     /**
      * Drawable转化为Bitmap
+     *
      * @param drawable drawable
      */
     public static Bitmap drawableToBitmap(Drawable drawable) {
         int width = drawable.getIntrinsicWidth();
         int height = drawable.getIntrinsicHeight();
-        if (width < 1 || height < 1){
+        if (width < 1 || height < 1) {
             return null;
         }
         Bitmap bitmap = Bitmap.createBitmap(width, height,
@@ -106,12 +110,13 @@ public class BitmapUtils {
 
     /**
      * Drawable转化为Bitmap
+     *
      * @param drawable drawable
-     * @param width 宽度
-     * @param height 高度
+     * @param width    宽度
+     * @param height   高度
      */
     public static Bitmap drawableToBitmap(Drawable drawable, @IntRange(from = 1) int width, @IntRange(from = 1) int height) {
-        if (width < 1 || height < 1){
+        if (width < 1 || height < 1) {
             return null;
         }
         Bitmap bitmap = Bitmap.createBitmap(width, height,
@@ -124,6 +129,7 @@ public class BitmapUtils {
 
     /**
      * base64转为byte[]
+     *
      * @param base64Data base64字符串
      */
     public static byte[] base64ToByte(String base64Data) {
@@ -132,11 +138,12 @@ public class BitmapUtils {
 
     /**
      * 压缩bitmap
-     * @param path 图片路径
-     * @param zoneWidthPx 展示区域宽度（单位PX）
+     *
+     * @param path         图片路径
+     * @param zoneWidthPx  展示区域宽度（单位PX）
      * @param zoneHeightPx 展示区域高度（单位PX）
      */
-    public static Bitmap decodeBitmap(String path, int zoneWidthPx, int zoneHeightPx){
+    public static Bitmap decodeBitmap(String path, int zoneWidthPx, int zoneHeightPx) {
         try {
             BitmapFactory.Options opts = new BitmapFactory.Options();
             opts.inJustDecodeBounds = true;
@@ -147,13 +154,15 @@ public class BitmapUtils {
             opts.inJustDecodeBounds = false;
             InputStream inputStream = new FileInputStream(path);
             return BitmapFactory.decodeStream(inputStream, null, opts);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    /** 设置图片的缩放比例 */
+    /**
+     * 设置图片的缩放比例
+     */
     private static int setInSampleSize(BitmapFactory.Options opts, int zoneWidthPx, int zoneHeightPx) {
         int pictureHeight = opts.outHeight;//图片高度
         int pictureWidth = opts.outWidth;//图片宽度
@@ -162,13 +171,14 @@ public class BitmapUtils {
         }
         if (pictureHeight > pictureWidth) {//如果高大于宽
             return Double.valueOf(Math.ceil((double) pictureHeight / (double) zoneHeightPx)).intValue();//向上取整
-        }else {
+        } else {
             return Double.valueOf(Math.ceil((double) pictureWidth / (double) zoneWidthPx)).intValue();
         }
     }
 
     /**
      * 从View获取Bitmap
+     *
      * @param view 控件
      */
     public static Bitmap viewToBitmap(View view) {
@@ -181,8 +191,9 @@ public class BitmapUtils {
 
     /**
      * 合并Bitmap
+     *
      * @param bgd 背景Bitmap
-     * @param fg 前景Bitmap
+     * @param fg  前景Bitmap
      */
     public static Bitmap combineBitmap(Bitmap bgd, Bitmap fg) {
         Bitmap bmp;
@@ -200,25 +211,35 @@ public class BitmapUtils {
         return bmp;
     }
 
-    /** 左上 */
+    /**
+     * 左上
+     */
     public static final int LEFT_TOP = 1;
-    /** 左下 */
+    /**
+     * 左下
+     */
     public static final int LEFT_BOTTOM = 2;
-    /** 右上 */
+    /**
+     * 右上
+     */
     public static final int RIGHT_TOP = 3;
-    /** 右下 */
+    /**
+     * 右下
+     */
     public static final int RIGHT_BOTTOM = 4;
 
     @IntDef({LEFT_TOP, LEFT_BOTTOM, RIGHT_TOP, RIGHT_BOTTOM})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface WatermarkLocationType {}
+    public @interface WatermarkLocationType {
+    }
 
     /**
      * 生成水印图片
-     * @param src 原图片
+     *
+     * @param src       原图片
      * @param watermark 水印图片
-     * @param location 方位 {@link #LEFT_TOP}、{@link #LEFT_BOTTOM}、{@link #RIGHT_TOP}、{@link #RIGHT_BOTTOM}
-     * @param margin 边距（像素）
+     * @param location  方位 {@link #LEFT_TOP}、{@link #LEFT_BOTTOM}、{@link #RIGHT_TOP}、{@link #RIGHT_BOTTOM}
+     * @param margin    边距（像素）
      */
     public static Bitmap createWatermarkBitmap(Bitmap src, Bitmap watermark, @WatermarkLocationType int location, int margin) {
         if (src == null || watermark == null) {
@@ -233,17 +254,17 @@ public class BitmapUtils {
         Canvas canvas = new Canvas(bitmap);
         canvas.drawBitmap(src, 0, 0, null);// 在 0，0坐标开始画入src
 
-        if (location == LEFT_TOP){
-            canvas.drawBitmap(watermark, margin,  margin, null);// 在src的左上角画入水印
+        if (location == LEFT_TOP) {
+            canvas.drawBitmap(watermark, margin, margin, null);// 在src的左上角画入水印
         }
-        if (location == LEFT_BOTTOM){
+        if (location == LEFT_BOTTOM) {
             canvas.drawBitmap(watermark, margin, height - watermarkHeight - margin, null);// 在src的左下角画入水印
         }
-        if (location == RIGHT_TOP){
+        if (location == RIGHT_TOP) {
             canvas.drawBitmap(watermark, width - watermarkWidth - margin, margin, null);// 在src的右上角画入水印
         }
 
-        if (location == RIGHT_BOTTOM){
+        if (location == RIGHT_BOTTOM) {
             canvas.drawBitmap(watermark, width - watermarkWidth - margin, height - watermarkHeight - margin, null);// 在src的右下角画入水印
         }
 
@@ -255,6 +276,7 @@ public class BitmapUtils {
 
     /**
      * 将原图片转为灰度图
+     *
      * @param bitmap 原图片
      */
     public static Bitmap createGreyBitmap(Bitmap bitmap) {
@@ -285,8 +307,9 @@ public class BitmapUtils {
 
     /**
      * 将原图片转为圆角图
+     *
      * @param bitmap 原图片
-     * @param round 圆角（像素）
+     * @param round  圆角（像素）
      */
     public static Bitmap createRoundedCornerBitmap(Bitmap bitmap, float round) {
 
@@ -311,6 +334,7 @@ public class BitmapUtils {
 
     /**
      * 将原图片增加倒影
+     *
      * @param bitmap 原图片
      */
     public static Bitmap createReflectionBitmap(Bitmap bitmap) {
@@ -346,6 +370,7 @@ public class BitmapUtils {
 
     /**
      * 将原图片转为居中圆形图
+     *
      * @param bitmap 原图片
      */
     public static Bitmap createRoundBitmap(Bitmap bitmap) {
@@ -401,8 +426,9 @@ public class BitmapUtils {
 
     /**
      * 旋转图片
+     *
      * @param bitmap 图片
-     * @param angle 角度
+     * @param angle  角度
      */
     public static Bitmap rotateBitmap(Bitmap bitmap, int angle) {
         Matrix matrix = new Matrix();
@@ -412,6 +438,7 @@ public class BitmapUtils {
 
     /**
      * 水平翻转处理
+     *
      * @param bitmap 图片
      */
     public static Bitmap reverseBitmapHorizontal(Bitmap bitmap) {
@@ -422,6 +449,7 @@ public class BitmapUtils {
 
     /**
      * 垂直翻转处理
+     *
      * @param bitmap 图片
      */
     public static Bitmap reverseBitmapVertical(Bitmap bitmap) {
@@ -432,8 +460,9 @@ public class BitmapUtils {
 
     /**
      * 更改图片色系，变亮或变暗
+     *
      * @param bitmap 图片
-     * @param delta 图片的亮暗程度值，越小图片会越亮，取值范围(0,23)
+     * @param delta  图片的亮暗程度值，越小图片会越亮，取值范围(0,23)
      */
     public static Bitmap setBitmapTone(Bitmap bitmap, @IntRange(from = 0, to = 23) int delta) {
         if (delta >= 23 || delta <= 0) {
@@ -490,8 +519,9 @@ public class BitmapUtils {
 
     /**
      * 处理图片饱和度
+     *
      * @param bitmap 图片
-     * @param value 饱和度值
+     * @param value  饱和度值
      */
     public static Bitmap setBitmapSaturation(Bitmap bitmap, int value) {
         // 计算出符合要求的饱和度值
@@ -513,8 +543,9 @@ public class BitmapUtils {
 
     /**
      * 处理图片亮度
+     *
      * @param bitmap 图片
-     * @param value 亮度值
+     * @param value  亮度值
      */
     public static Bitmap setBitmapLuminance(Bitmap bitmap, int value) {
         // 计算出符合要求的亮度值
@@ -537,8 +568,9 @@ public class BitmapUtils {
 
     /**
      * 色相处理
+     *
      * @param bitmap 图片
-     * @param value 色相值
+     * @param value  色相值
      */
     public static Bitmap setBitmapHue(Bitmap bitmap, int value) {
         // 计算出符合要求的色相值
@@ -565,6 +597,7 @@ public class BitmapUtils {
 
     /**
      * 怀旧效果处理
+     *
      * @param bitmap 图片
      */
     public static Bitmap createNostalgicBitmap(Bitmap bitmap) {
@@ -599,6 +632,7 @@ public class BitmapUtils {
 
     /**
      * 柔化效果处理
+     *
      * @param bitmap 图片
      */
     public static Bitmap createSoftenBitmap(Bitmap bitmap) {
@@ -663,7 +697,8 @@ public class BitmapUtils {
 
     /**
      * 光照效果处理
-     * @param bitmap 图片
+     *
+     * @param bitmap  图片
      * @param centerX 光源在X轴的位置
      * @param centerY 光源在Y轴的位置
      */
@@ -724,6 +759,7 @@ public class BitmapUtils {
 
     /**
      * 底片效果处理
+     *
      * @param bitmap 图片
      */
     public static Bitmap createFilmBitmap(Bitmap bitmap) {
@@ -773,6 +809,7 @@ public class BitmapUtils {
 
     /**
      * 锐化效果处理
+     *
      * @param bitmap 图片
      */
     public static Bitmap createSharpenBitmap(Bitmap bitmap) {
@@ -832,6 +869,7 @@ public class BitmapUtils {
 
     /**
      * 浮雕效果处理
+     *
      * @param bitmap 图片
      */
     public static Bitmap createEmbossBitmap(Bitmap bitmap) {

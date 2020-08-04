@@ -156,13 +156,14 @@ public class AppUtils {
 
     /**
      * 权限是否被授予
-     * @param context 上下文
+     *
+     * @param context    上下文
      * @param permission 权限
      */
-    public static boolean isPermissionGranted(Context context, String permission){
+    public static boolean isPermissionGranted(Context context, String permission) {
         try {
             return ActivityCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
@@ -170,9 +171,10 @@ public class AppUtils {
 
     /**
      * 根据包名打开对应的设置界面
+     *
      * @param context 上下文
      */
-    public static void jumpAppDetailSetting(Context context){
+    public static void jumpAppDetailSetting(Context context) {
         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         intent.setData(Uri.parse("package:" + context.getPackageName()));
         context.startActivity(intent);
@@ -180,8 +182,9 @@ public class AppUtils {
 
     /**
      * 获取MetaData
+     *
      * @param context 上下文
-     * @param key 标签名
+     * @param key     标签名
      */
     public static Object getMetaData(Context context, String key) {
         try {

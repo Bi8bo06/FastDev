@@ -11,32 +11,51 @@ import java.lang.annotation.RetentionPolicy;
 public class OperatorInfo {
     @IntDef({OPERATOR_UNKNOWN, OPERATOR_CMCC, OPERATOR_CUCC, OPERATOR_CTCC})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface OperatorType {}
+    public @interface OperatorType {
+    }
 
-    /** 未知 */
+    /**
+     * 未知
+     */
     public static final int OPERATOR_UNKNOWN = 0;
-    /** 移动 */
+    /**
+     * 移动
+     */
     public static final int OPERATOR_CMCC = 1;
-    /** 联通 */
+    /**
+     * 联通
+     */
     public static final int OPERATOR_CUCC = 2;
-    /** 电信 */
+    /**
+     * 电信
+     */
     public static final int OPERATOR_CTCC = 3;
 
-    /** 网络类型 */
+    /**
+     * 网络类型
+     */
     @OperatorType
     public int type = OPERATOR_UNKNOWN;
 
     // --------------------- 基站信息 ---------------------------
-    /** 中国460 */
+    /**
+     * 中国460
+     */
     public String mcc;
-    /** 00移动、01联通、11电信4G */
+    /**
+     * 00移动、01联通、11电信4G
+     */
     public String mnc;
-    /** 1~65535 */
+    /**
+     * 1~65535
+     */
     public String lac;
-    /** 2G（1~65535） 3G/4G（1~268435455） */
+    /**
+     * 2G（1~65535） 3G/4G（1~268435455）
+     */
     public String cid;
 
-    public boolean isSuccess(){
+    public boolean isSuccess() {
         return type != OPERATOR_UNKNOWN;
     }
 }

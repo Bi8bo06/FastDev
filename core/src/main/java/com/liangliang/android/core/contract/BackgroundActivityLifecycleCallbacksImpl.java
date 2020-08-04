@@ -7,8 +7,10 @@ import android.os.Bundle;
 /**
  * 后台activity数量统计
  */
-public class BackgroundActivityLifecycleCallbacksImpl implements Application.ActivityLifecycleCallbacks{
-    /** 显示的activity数量 */
+public class BackgroundActivityLifecycleCallbacksImpl implements Application.ActivityLifecycleCallbacks {
+    /**
+     * 显示的activity数量
+     */
     private int mCount = 0;
 
     @Override
@@ -34,7 +36,7 @@ public class BackgroundActivityLifecycleCallbacksImpl implements Application.Act
     @Override
     public void onActivityStopped(Activity activity) {
         mCount--;
-        if (mCount < 0){
+        if (mCount < 0) {
             mCount = 0;
         }
     }
@@ -49,7 +51,7 @@ public class BackgroundActivityLifecycleCallbacksImpl implements Application.Act
 
     }
 
-    public boolean isBackground(){
+    public boolean isBackground() {
         return mCount == 0;
     }
 }

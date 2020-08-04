@@ -10,9 +10,11 @@ import android.os.Message;
 public class UiHandler {
     private static Handler sHandler;
 
-    /** 初始化 */
+    /**
+     * 初始化
+     */
     private static void prepare() {
-        synchronized(UiHandler.class){
+        synchronized (UiHandler.class) {
             if (sHandler == null) {
                 sHandler = new Handler(Looper.getMainLooper());
             }
@@ -24,11 +26,12 @@ public class UiHandler {
 
     /**
      * 在UI线程执行Runnable
+     *
      * @param r 线程体
      */
     public static void post(Runnable r) {
         prepare();
-        if(Looper.myLooper() == Looper.getMainLooper()) {
+        if (Looper.myLooper() == Looper.getMainLooper()) {
             r.run();
         } else {
             sHandler.post(r);
@@ -37,12 +40,13 @@ public class UiHandler {
 
     /**
      * 在UI线程执行Runnable，并指定token
-     * @param r 线程体
+     *
+     * @param r     线程体
      * @param token 标志
      */
     public static void post(Runnable r, Object token) {
         prepare();
-        if(Looper.myLooper() == Looper.getMainLooper()) {
+        if (Looper.myLooper() == Looper.getMainLooper()) {
             r.run();
         } else {
             Message message = Message.obtain(sHandler, r);
@@ -53,7 +57,8 @@ public class UiHandler {
 
     /**
      * 延迟执行
-     * @param r 线程体
+     *
+     * @param r     线程体
      * @param delay 延迟时间（毫秒）
      */
     public static void postDelayed(Runnable r, long delay) {
@@ -63,7 +68,8 @@ public class UiHandler {
 
     /**
      * 延迟执行，并指定token
-     * @param r 线程体
+     *
+     * @param r     线程体
      * @param token 标志
      * @param delay
      */
@@ -76,6 +82,7 @@ public class UiHandler {
 
     /**
      * 移除指定token的Runnable（token传null则移除所有的Runnable）
+     *
      * @param token 标志
      */
     public static void remove(Object token) {
@@ -83,8 +90,10 @@ public class UiHandler {
         sHandler.removeCallbacksAndMessages(token);
     }
 
-    /** 销毁Handler */
-    public static void destroy(){
+    /**
+     * 销毁Handler
+     */
+    public static void destroy() {
         remove(null);
         sHandler = null;
     }

@@ -1,4 +1,4 @@
-package com.liangliang.android.component.fragment;
+package com.liangliang.android.component.base.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,7 +17,6 @@ import java.util.List;
  * 懒加载的fragment
  */
 public abstract class LazyFragment extends RxFragment implements IFragmentBackPressed {
-
     /**
      * 父控件布局
      */
@@ -62,9 +61,7 @@ public abstract class LazyFragment extends RxFragment implements IFragmentBackPr
         super.setUserVisibleHint(isVisibleToUser);
         isLazyLoad = configIsLazyLoad();
         boolean isInit = false;
-
-        // fragment可见 && 启用懒加载 && 不是第一次启动 && 未加载完成
-        if (isVisibleToUser && isLazyLoad && !isFirstCreate && !isLoadComplete) {
+        if (isVisibleToUser && isLazyLoad && !isFirstCreate && !isLoadComplete) {// fragment可见 && 启用懒加载 && 不是第一次启动 && 未加载完成
             init(mParentView, null);
             isLoadComplete = true;
             isInit = true;

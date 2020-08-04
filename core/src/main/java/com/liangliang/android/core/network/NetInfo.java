@@ -11,28 +11,47 @@ import java.lang.annotation.RetentionPolicy;
 public class NetInfo {
     @IntDef({NETWORK_TYPE_NONE, NETWORK_TYPE_UNKNOWN, NETWORK_TYPE_WIFI, NETWORK_TYPE_2G, NETWORK_TYPE_3G, NETWORK_TYPE_4G})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface NetType {}
+    public @interface NetType {
+    }
 
-    /** 未连接网络 */
+    /**
+     * 未连接网络
+     */
     public static final int NETWORK_TYPE_NONE = -1;
-    /** 未知网络（可能是有线） */
+    /**
+     * 未知网络（可能是有线）
+     */
     public static final int NETWORK_TYPE_UNKNOWN = 0;
-    /** WIFI */
+    /**
+     * WIFI
+     */
     public static final int NETWORK_TYPE_WIFI = 1;
-    /** 2G */
+    /**
+     * 2G
+     */
     public static final int NETWORK_TYPE_2G = 2;
-    /** 3G */
+    /**
+     * 3G
+     */
     public static final int NETWORK_TYPE_3G = 3;
-    /** 4G */
+    /**
+     * 4G
+     */
     public static final int NETWORK_TYPE_4G = 4;
 
-    /** 网络类型 */
+    /**
+     * 网络类型
+     */
     @NetType
     public int type = NETWORK_TYPE_NONE;
 
-    /** 网络制式 */
+    /**
+     * 网络制式
+     */
     public int standard = NETWORK_TYPE_NONE;
 
-    /** 扩展信息 */
+    /**
+     * 扩展信息
+     */
     public String extraInfo = "";
 }

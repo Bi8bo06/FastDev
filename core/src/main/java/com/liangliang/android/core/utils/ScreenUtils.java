@@ -13,11 +13,12 @@ import android.view.WindowManager;
 public class ScreenUtils {
     /**
      * 获得屏幕宽度
+     *
      * @param context 上下文
      */
     public static int getScreenWidth(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        if (wm == null){
+        if (wm == null) {
             return 0;
         }
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -27,11 +28,12 @@ public class ScreenUtils {
 
     /**
      * 获得屏幕高度
+     *
      * @param context 上下文
      */
     public static int getScreenHeight(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        if (wm == null){
+        if (wm == null) {
             return 0;
         }
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -39,7 +41,9 @@ public class ScreenUtils {
         return outMetrics.heightPixels;
     }
 
-    /** 判断是否存在NavigationBar */
+    /**
+     * 判断是否存在NavigationBar
+     */
     public static boolean hasNavigationBar(Window window) {
         int decorViewHeight = window.getDecorView().getHeight();
         DisplayMetrics dm = new DisplayMetrics();
@@ -48,12 +52,16 @@ public class ScreenUtils {
         return decorViewHeight != useableScreenHeight;
     }
 
-    /** 判断是否存在NavigationBar */
+    /**
+     * 判断是否存在NavigationBar
+     */
     public static boolean hasNavigationBar(Activity activity) {
         return hasNavigationBar(activity.getWindow());
     }
 
-    /** 获取虚拟按键高度  */
+    /**
+     * 获取虚拟按键高度
+     */
     public static int getNavigationBarHeight(Context context, Window window) {
         Resources resources = context.getResources();
         int id = resources.getIdentifier("navigation_bar_height", "dimen", "android");
@@ -63,13 +71,16 @@ public class ScreenUtils {
         return 0;
     }
 
-    /** 获取虚拟按键高度  */
+    /**
+     * 获取虚拟按键高度
+     */
     public static int getNavigationBarHeight(Activity activity) {
         return getNavigationBarHeight(activity, activity.getWindow());
     }
 
     /**
      * 获取状态栏高度
+     *
      * @param context 上下文
      */
     public static int getStatusBarHeight(Context context) {

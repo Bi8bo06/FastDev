@@ -19,89 +19,113 @@ public class ACacheUtils {
     private ACacheUtils() {
     }
 
-    /** 构建对象 */
+    /**
+     * 构建对象
+     */
     private Builder mBuilder;
 
-    /** 设置构建对象 */
-    public Builder newBuilder(){
+    /**
+     * 设置构建对象
+     */
+    public Builder newBuilder() {
         mBuilder = null;
         mBuilder = new Builder();
         return mBuilder;
     }
 
-    /** 获取构建对象 */
-    private Builder getBuilder(){
-        if (mBuilder == null){
+    /**
+     * 获取构建对象
+     */
+    private Builder getBuilder() {
+        if (mBuilder == null) {
             mBuilder = newBuilder();
         }
         return mBuilder;
     }
 
-    /** 创建ACache对象 */
-    public ACache create(){
+    /**
+     * 创建ACache对象
+     */
+    public ACache create() {
         Builder builder = getBuilder();
-        if (builder.getCacheDir() == null){
+        if (builder.getCacheDir() == null) {
             throw new NullPointerException("please set cache dir first");
         }
         return ACache.get(builder.getCacheDir(), builder.getMaxSize(), builder.getMaxCount());
     }
 
-    public class Builder{
-        /** 缓存目录 */
+    public class Builder {
+        /**
+         * 缓存目录
+         */
         private File mCacheDir = null;
-        /** 缓存大小 */
+        /**
+         * 缓存大小
+         */
         private long mMaxSize = 0;
-        /** 缓存数量 */
+        /**
+         * 缓存数量
+         */
         private int mMaxCount = 0;
 
         /**
          * 设置缓存目录
+         *
          * @param dirPath 缓存目录
          */
-        public Builder setCacheDir(String dirPath){
+        public Builder setCacheDir(String dirPath) {
             mCacheDir = FileUtils.createFile(dirPath);
             return this;
         }
 
         /**
          * 设置缓存大小
+         *
          * @param maxSize 缓存大小
          */
-        public Builder setMaxSize(long maxSize){
+        public Builder setMaxSize(long maxSize) {
             mMaxSize = maxSize;
             return this;
         }
 
         /**
          * 设置缓存数量
+         *
          * @param maxCount 缓存数量
          */
-        public Builder setMaxCount(int maxCount){
+        public Builder setMaxCount(int maxCount) {
             mMaxCount = maxCount;
             return this;
         }
 
         /**
          * 完成ACache构建
+         *
          * @param context 上下文
          */
-        public void build(Context context){
-            if (mCacheDir == null){
+        public void build(Context context) {
+            if (mCacheDir == null) {
                 mCacheDir = new File(context.getApplicationContext().getCacheDir(), "ACache");
             }
         }
 
-        /** 获取缓存目录 */
+        /**
+         * 获取缓存目录
+         */
         private File getCacheDir() {
             return mCacheDir;
         }
 
-        /** 获取缓存大小 */
+        /**
+         * 获取缓存大小
+         */
         private long getMaxSize() {
             return mMaxSize == 0 ? ACache.MAX_SIZE : mMaxSize;
         }
 
-        /** 获取缓存数量 */
+        /**
+         * 获取缓存数量
+         */
         private int getMaxCount() {
             return mMaxCount == 0 ? ACache.MAX_COUNT : mMaxCount;
         }

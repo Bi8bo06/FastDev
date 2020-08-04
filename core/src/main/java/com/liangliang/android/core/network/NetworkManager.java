@@ -25,18 +25,25 @@ public class NetworkManager {
     private NetworkManager() {
     }
 
-    /** 网络广播 */
+    /**
+     * 网络广播
+     */
     private ConnectBroadcastReceiver mReceiver;
-    /** 网络信息 */
+    /**
+     * 网络信息
+     */
     private NetInfo mNetInfo = new NetInfo();
-    /** 网络监听器 */
+    /**
+     * 网络监听器
+     */
     private List<NetworkListener> mNetworkListeners = new ArrayList<>();
 
     /**
      * 注册网络监听广播
+     *
      * @param context 上下文
      */
-    public void init(Context context){
+    public void init(Context context) {
         try {
             IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
             mReceiver = new ConnectBroadcastReceiver();
@@ -48,6 +55,7 @@ public class NetworkManager {
 
     /**
      * 解除网络监听广播
+     *
      * @param context 上下文
      */
     public void release(Context context) {
@@ -60,33 +68,40 @@ public class NetworkManager {
         }
     }
 
-    /** 网络是否可用 */
+    /**
+     * 网络是否可用
+     */
     public boolean isNetworkAvailable() {
         return mNetInfo.type != NetInfo.NETWORK_TYPE_NONE;
     }
 
-    /** 是否在wifi下 */
+    /**
+     * 是否在wifi下
+     */
     public boolean isWifi() {
         return mNetInfo.type == NetInfo.NETWORK_TYPE_WIFI;
     }
 
-    /** 获取当前网络类型（未连接/WIFI/4G/3G/2G） */
+    /**
+     * 获取当前网络类型（未连接/WIFI/4G/3G/2G）
+     */
     @NetInfo.NetType
-    public int getNetType(){
+    public int getNetType() {
         return mNetInfo.type;
     }
 
     /**
      * 获取运营商代号（0：未知 1：移动 2：联通 3：电信）
+     *
      * @param context 上下文
      */
     @OperatorInfo.OperatorType
     public int getSimOperator(Context context) {
-        if (context == null){
+        if (context == null) {
             return OperatorInfo.OPERATOR_UNKNOWN;
         }
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        if (telephonyManager == null){
+        if (telephonyManager == null) {
             return OperatorInfo.OPERATOR_UNKNOWN;
         }
         String opeator = telephonyManager.getSimOperator();
@@ -107,21 +122,22 @@ public class NetworkManager {
 
     /**
      * 获取运营商（基站）信息
+     *
      * @param context 上下文
      */
     @SuppressLint("MissingPermission")
-    public OperatorInfo getOperatorInfo(Context context){
-        if (context == null){
+    public OperatorInfo getOperatorInfo(Context context) {
+        if (context == null) {
             return null;
         }
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        if (telephonyManager == null){
+        if (telephonyManager == null) {
             return null;
         }
         int simOperator = getSimOperator(context);
         OperatorInfo info = new OperatorInfo();
         info.type = simOperator;
-        if (!info.isSuccess()){
+        if (!info.isSuccess()) {
             return null;
         }
 
@@ -129,7 +145,7 @@ public class NetworkManager {
             // 移动或联通
             if (simOperator == OperatorInfo.OPERATOR_CMCC || simOperator == OperatorInfo.OPERATOR_CUCC) {
                 GsmCellLocation location = (GsmCellLocation) telephonyManager.getCellLocation();
-                if (location == null){
+                if (location == null) {
                     return null;
                 }
                 info.cid = String.valueOf(location.getCid());
@@ -142,7 +158,7 @@ public class NetworkManager {
             // 电信
             if (simOperator == OperatorInfo.OPERATOR_CTCC) {
                 CellLocation cellLocation = telephonyManager.getCellLocation();
-                if (cellLocation == null){
+                if (cellLocation == null) {
                     return null;
                 }
                 if (cellLocation instanceof CdmaCellLocation) {
@@ -152,7 +168,7 @@ public class NetworkManager {
                     info.mcc = telephonyManager.getNetworkOperator().substring(0, 3);
                     info.mnc = telephonyManager.getNetworkOperator();
                     return info;
-                }else if (cellLocation instanceof GsmCellLocation) {
+                } else if (cellLocation instanceof GsmCellLocation) {
                     GsmCellLocation location = (GsmCellLocation) cellLocation;
                     info.cid = String.valueOf(location.getCid());
                     info.lac = String.valueOf(location.getLac());
@@ -161,32 +177,34 @@ public class NetworkManager {
                     return info;
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    /** 更新网络信息 */
+    /**
+     * 更新网络信息
+     */
     @SuppressLint("MissingPermission")
-    void updateNet(ConnectivityManager manager){
+    void updateNet(ConnectivityManager manager) {
         mNetInfo.type = NetInfo.NETWORK_TYPE_NONE;
         mNetInfo.standard = NetInfo.NETWORK_TYPE_NONE;
-        if (manager == null){
+        if (manager == null) {
             return;
         }
         NetworkInfo netInfo = null;
         try {
             netInfo = manager.getActiveNetworkInfo();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        if (netInfo == null || !netInfo.isAvailable()){//网络未连接
+        if (netInfo == null || !netInfo.isAvailable()) {//网络未连接
             return;
         }
 
         int type = getType(netInfo);
-        if (type == ConnectivityManager.TYPE_WIFI){// wifi下
+        if (type == ConnectivityManager.TYPE_WIFI) {// wifi下
             mNetInfo.type = NetInfo.NETWORK_TYPE_WIFI;
             mNetInfo.standard = NetInfo.NETWORK_TYPE_WIFI;
             return;
@@ -231,25 +249,26 @@ public class NetworkManager {
 
     /**
      * 获取网络类型
+     *
      * @param info 网络信息类
      */
-    private int getType(NetworkInfo info){
+    private int getType(NetworkInfo info) {
         try {
             //这里做类型判断防止一些ROM被修改这个类型不是int型
             Object type = info.getType();
-            if (type instanceof Integer){
+            if (type instanceof Integer) {
                 return (int) type;
             }
-            if (type instanceof String){
+            if (type instanceof String) {
                 String typeStr = (String) type;
                 if (!TextUtils.isEmpty(typeStr)) {
                     return Integer.parseInt(typeStr);
                 }
             }
-            if (type instanceof Double || type instanceof Float){
+            if (type instanceof Double || type instanceof Float) {
                 return (int) type;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return NetInfo.NETWORK_TYPE_UNKNOWN;
@@ -257,25 +276,26 @@ public class NetworkManager {
 
     /**
      * 获取网络制式
+     *
      * @param info 网络信息类
      */
-    private int getSubType(NetworkInfo info){
+    private int getSubType(NetworkInfo info) {
         try {
             //这里做类型判断防止一些ROM被修改这个类型不是int型
             Object type = info.getSubtype();
-            if (type instanceof Integer){
+            if (type instanceof Integer) {
                 return (int) type;
             }
-            if (type instanceof String){
+            if (type instanceof String) {
                 String typeStr = (String) type;
                 if (!TextUtils.isEmpty(typeStr)) {
                     return Integer.parseInt(typeStr);
                 }
             }
-            if (type instanceof Double || type instanceof Float){
+            if (type instanceof Double || type instanceof Float) {
                 return (int) type;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return TelephonyManager.NETWORK_TYPE_UNKNOWN;
@@ -283,6 +303,7 @@ public class NetworkManager {
 
     /**
      * 添加网络监听器
+     *
      * @param listener 监听器
      */
     public void addNetworkListener(NetworkListener listener) {
@@ -291,36 +312,44 @@ public class NetworkManager {
 
     /**
      * 删除网络监听器
+     *
      * @param listener 监听器
      */
     public void removeNetworkListener(NetworkListener listener) {
         mNetworkListeners.remove(listener);
     }
 
-    /** 清除所有监听器 */
-    public void clearNetworkListener(){
+    /**
+     * 清除所有监听器
+     */
+    public void clearNetworkListener() {
         mNetworkListeners.clear();
     }
 
-    /** 通知监听器回调 */
+    /**
+     * 通知监听器回调
+     */
     void notifyNetworkListeners() {
         Iterator<NetworkListener> iterator = mNetworkListeners.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             NetworkListener listener = iterator.next();
-            if (listener != null){
+            if (listener != null) {
                 listener.onNetworkStatusChanged(isNetworkAvailable(), mNetInfo);
-            }else{
+            } else {
                 iterator.remove();
             }
         }
     }
 
-    /** 网络监听器 */
+    /**
+     * 网络监听器
+     */
     public interface NetworkListener {
         /**
          * 网络状态变化
+         *
          * @param isNetworkAvailable 网络是否可用
-         * @param netInfo 网络信息
+         * @param netInfo            网络信息
          */
         void onNetworkStatusChanged(boolean isNetworkAvailable, NetInfo netInfo);
     }

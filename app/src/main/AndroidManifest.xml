@@ -4,28 +4,6 @@
     package="com.liangliang.android.fastdev">
 
     <!-- 联网 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 网络状态 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- 震动 -->
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <!-- 在SDCard中创建与删除文件权限 -->
-    <uses-permission
-        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
-        tools:ignore="ProtectedPermissions" />
-    <!-- 前台通知 -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
-    <!-- ********************* 需要申请（只要同组有一个授权整组的权限都可以使用） ********************* -->
-    <!-- 相机 -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!--允许读取手机信息权限-->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!-- 写存储 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- 读存储 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <application
         android:name=".App"
         android:allowBackup="false"
@@ -37,10 +15,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
-
-    <meta-data
-            android:name="error_tag"
-            android:value="resultValue" />
 
         <activity
             android:name=".ui.splash.SplashActivity"
@@ -59,7 +33,61 @@
             android:label="主页面"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
+
         </activity>
 
+        <activity
+            android:name=".ui.image.GlideActivity"
+            android:label="Glide测试"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.idcard.IdcardTestActivity"
+            android:label="身份证号码测试类"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.dialog.DialogTestActivity"
+            android:label="弹框测试"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.toast.ToastTestActivity"
+            android:label="Toast测试类"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <meta-data
+            android:name="error_tag"
+            android:value="resultValue" />
     </application>
+    <!-- 网络状态 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 震动 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 前台通知 -->
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+
+    <!-- ********************* 需要申请（只要同组有一个授权整组的权限都可以使用） ********************* -->
+    <!-- 相机 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!--允许读取手机信息权限-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 写存储 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 读存储 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>

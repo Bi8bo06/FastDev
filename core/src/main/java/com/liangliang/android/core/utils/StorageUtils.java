@@ -14,12 +14,13 @@ import java.lang.reflect.Method;
 public class StorageUtils {
     /**
      * 获得存储大小，单位byte
+     *
      * @param path
      */
     public static long getStorageSize(String path) {
         try {
             StatFs fs = new StatFs(path);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 return fs.getAvailableBlocksLong() * fs.getBlockSizeLong();
             }
             return fs.getAvailableBlocksLong() * fs.getBlockSizeLong();
@@ -31,6 +32,7 @@ public class StorageUtils {
 
     /**
      * 获取外置存储路径
+     *
      * @param context 上下文
      */
     public static String getExternalStoragePath(Context context) {
@@ -58,6 +60,7 @@ public class StorageUtils {
 
     /**
      * 获取内置存储路径
+     *
      * @param context 上下文
      */
     public static String getInternalStoragePath(Context context) {
