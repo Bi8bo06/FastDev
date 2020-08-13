@@ -11,7 +11,7 @@ import com.liangliang.android.core.contract.BackgroundActivityLifecycleCallbacks
 import com.liangliang.android.core.log.PrintLog;
 import com.liangliang.android.core.network.NetworkManager;
 import com.liangliang.android.core.utils.DensityUtils;
-import com.liangliang.android.fastdev.file.FileManager;
+import com.liangliang.android.fastdev.utils.file.FileManager;
 
 /**
  * application

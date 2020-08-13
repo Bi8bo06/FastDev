@@ -6,7 +6,6 @@ import java.security.MessageDigest;
 
 /**
  * SHA1信息摘要
- * Created by zhouL on 2017/1/4.
  */
 public class SHA1 {
     /**

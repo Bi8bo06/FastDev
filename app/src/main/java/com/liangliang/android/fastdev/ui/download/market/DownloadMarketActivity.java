@@ -1,0 +1,154 @@
+package com.liangliang.android.fastdev.ui.download.market;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.liangliang.android.component.base.activity.BaseActivity;
+import com.liangliang.android.component.widget.base.TitleBarLayout;
+import com.liangliang.android.core.utils.DensityUtils;
+import com.liangliang.android.fastdev.R;
+import com.liangliang.android.fastdev.bean.AppInfoBean;
+import com.liangliang.android.fastdev.ui.download.DownloadConstant;
+import com.liangliang.android.fastdev.ui.download.manager.DownloadManagerActivity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import io.reactivex.Maybe;
+import zlc.season.rxdownload3.RxDownload;
+import zlc.season.rxdownload3.core.Mission;
+
+/**
+ * 应用市场下载类
+ */
+public class DownloadMarketActivity extends BaseActivity {
+    public static void start(Context context) {
+        Intent starter = new Intent(context, DownloadMarketActivity.class);
+        context.startActivity(starter);
+    }
+
+    /**
+     * 应用市场列表
+     */
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
+    /**
+     * 应用市场列表适配器
+     */
+    private MarketAdapter mAdapter;
+
+    /**
+     * 应用列表
+     */
+    private List<AppInfoBean> mList;
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_download_market_layout;
+    }
+
+    @Override
+    protected void findViews(Bundle savedInstanceState) {
+        ButterKnife.bind(this);
+        initTitleBarLayout(getTitleBarLayout());
+        initRecyclerView();
+    }
+
+    private void initTitleBarLayout(TitleBarLayout titleBarLayout) {
+        titleBarLayout.setTitleName(R.string.market_title);
+        titleBarLayout.needExpandView(true);
+        titleBarLayout.addExpandView(getExpandView());
+    }
+
+    /**
+     * 获取扩展view
+     */
+    private View getExpandView() {
+        TextView textView = new TextView(getContext());
+        textView.setText(R.string.download_manager_title);
+        textView.setPadding(DensityUtils.dp2px(getContext(), 15), 0, DensityUtils.dp2px(getContext(), 15), 0);
+        textView.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+        return textView;
+    }
+
+    private void initRecyclerView() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+        mAdapter = new MarketAdapter(getContext());
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    protected void clickBackBtn() {
+        super.clickBackBtn();
+        finish();
+    }
+
+    @Override
+    protected void setListeners() {
+        super.setListeners();
+
+        // 应用市场列表适配器
+        mAdapter.setListener(new MarketAdapter.Listener() {
+            @Override
+            public void onClickDownload(AppInfoBean bean, int position) {
+                RxDownload.INSTANCE.start(bean.mission).subscribe();
+                //获取数据库列表
+                Maybe<List<Mission>> allMission = RxDownload.INSTANCE.getAllMission();
+            }
+
+            @Override
+            public void onClickPause(AppInfoBean bean, int position) {
+                RxDownload.INSTANCE.stop(bean.mission).subscribe();
+                //获取数据库列表
+                Maybe<List<Mission>> allMission = RxDownload.INSTANCE.getAllMission();
+            }
+
+            @Override
+            public void onClickDelete(AppInfoBean bean, int position) {
+                RxDownload.INSTANCE.delete(bean.mission, true).subscribe();
+            }
+        });
+
+        getTitleBarLayout().getExpandView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DownloadManagerActivity.start(getContext());
+            }
+        });
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        mList = DownloadConstant.getMarketApps();
+        createDownloadMission(mList);
+        mAdapter.setData(mList);
+        mAdapter.notifyDataSetChanged();
+        showStatusCompleted();
+    }
+
+    /**
+     * 创建下载任务
+     */
+    private void createDownloadMission(List<AppInfoBean> list) {
+        List<Mission> missions = new ArrayList<>();
+        for (AppInfoBean appInfoBean : list) {
+            missions.add(appInfoBean.mission);
+        }
+        RxDownload.INSTANCE.createAll(missions, false).subscribe();
+        //获取数据库列表
+        Maybe<List<Mission>> allMission = RxDownload.INSTANCE.getAllMission();
+    }
+}

@@ -9,7 +9,6 @@ import com.liangliang.android.fastdev.R;
 
 /**
  * 测试顶部弹框
- * Created by zhouL on 2017/6/14.
  */
 public class TestTopDialog extends BaseTopDialog {
     public TestTopDialog(@NonNull Context context) {

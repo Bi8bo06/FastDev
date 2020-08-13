@@ -1,18 +1,22 @@
 package com.liangliang.android.core.utils;
 
+import android.Manifest;
 import android.app.ActivityManager;
+import android.app.admin.DevicePolicyManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Looper;
 import android.provider.Settings;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresPermission;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
@@ -194,5 +198,73 @@ public class AppUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 跳转到定位设置页
+     * @param context 上下文
+     */
+    public static void jumpLocationSetting(Context context){
+        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        context.startActivity(intent);
+    }
+
+    /**
+     * GPS是否打开
+     * @param context 上下文
+     */
+    public static boolean isGpsOpen(Context context) {
+        String str = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+        return !TextUtils.isEmpty(str) && (str.contains("gps") || str.contains("GPS"));
+    }
+
+    /**
+     * wifi是否可用
+     * @param context 上下文
+     */
+    @RequiresPermission(Manifest.permission.CHANGE_WIFI_STATE)
+    public static boolean isWifiEnabled(Context context) {
+        WifiManager manager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        return manager != null && manager.isWifiEnabled();
+    }
+
+    /**
+     * 设置wifi是否可用
+     * @param context 上下文
+     * @param enabled 是否可用
+     */
+    @RequiresPermission(Manifest.permission.CHANGE_WIFI_STATE)
+    public static void setWifiEnabled(Context context, boolean enabled) {
+        WifiManager manager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        if (manager != null && manager.isWifiEnabled()){
+            manager.setWifiEnabled(enabled);
+        }
+    }
+
+    /**
+     * 跳转到WIFI设置页
+     * @param context 上下文
+     */
+    public static void jumpWifiSetting(Context context){
+        Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 跳转到数据流量设置页
+     * @param context 上下文
+     */
+    public static void jumpDataRoamingSetting(Context context){
+        Intent intent = new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 跳转到密码设置页
+     * @param context 上下文
+     */
+    public static void jumpSetPswdSetting(Context context){
+        Intent intent = new Intent(DevicePolicyManager.ACTION_SET_NEW_PASSWORD);
+        context.startActivity(intent);
     }
 }

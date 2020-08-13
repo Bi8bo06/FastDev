@@ -32,7 +32,7 @@ import com.liangliang.android.core.log.PrintLog;
 import com.liangliang.android.core.utils.NotificationUtils;
 import com.liangliang.android.core.utils.ToastUtils;
 import com.liangliang.android.fastdev.R;
-import com.liangliang.android.fastdev.file.FileManager;
+import com.liangliang.android.fastdev.utils.file.FileManager;
 import com.liangliang.android.fastdev.ui.main.MainActivity;
 import com.liangliang.android.imageloader.ImageLoader;
 import com.liangliang.android.imageloader.glide.transformations.RoundedCornersTransformation;
@@ -45,7 +45,6 @@ import butterknife.ButterKnife;
 /**
  * Glide测试
  */
-
 public class GlideActivity extends BaseActivity {
     public static void start(Context context) {
         Intent starter = new Intent(context, GlideActivity.class);

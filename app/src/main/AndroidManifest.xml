@@ -4,6 +4,38 @@
     package="com.liangliang.android.fastdev">
 
     <!-- 联网 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 震动 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <!-- 前台通知 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <!-- ********************* 需要申请（只要同组有一个授权整组的权限都可以使用） ********************* -->
+    <!-- 相机 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!--允许读取手机信息权限-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 写存储 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 读存储 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- 录制音频 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- 通过GPS芯片接收卫星的定位信息 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 通过WiFi或移动基站的方式定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 后台定位 -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+
     <application
         android:name=".App"
         android:allowBackup="false"
@@ -15,6 +47,35 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="n">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths" />
+        </provider>
+
+        <receiver
+            android:name=".utils.admin.AdminReceiver"
+            android:label="设备管理"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="error_tag"
+            android:value="resultValue" />
 
         <activity
             android:name=".ui.splash.SplashActivity"
@@ -44,6 +105,13 @@
         </activity>
 
         <activity
+            android:name=".ui.security.EncryptTestActivity"
+            android:label="加密测试类"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
             android:name=".ui.idcard.IdcardTestActivity"
             android:label="身份证号码测试类"
             android:screenOrientation="portrait">
@@ -64,30 +132,139 @@
 
         </activity>
 
-        <meta-data
-            android:name="error_tag"
-            android:value="resultValue" />
+        <activity
+            android:name=".ui.keyboard.KeyboardTestActivity"
+            android:label="自定义键盘测试类"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.admin.AdminTestActivity"
+            android:label="设备管理功能测试"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.photopicker.PhotoPickerTestActivity"
+            android:label="照片选择器测试"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.retrofit.RetrofitTestActivity"
+            android:label="Retrofit测试"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.config.ConfigLayoutActivity"
+            android:label="基础控件配置测试类"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.design.coordinator.CoordinatorTestActivity"
+            android:label="CoordinatorLayout测试类"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.drawer.DrawerTestActivity"
+            android:label="侧滑栏测试类"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.design.cardview.CardViewTestActivity"
+            android:label="CardView测试类"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.notification.NotificationActivity"
+            android:label="通知测试"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.rv.drag.DragRecyclerViewActivity"
+            android:label="RV拖拽测试"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.rv.anim.AnimRecyclerViewActivity"
+            android:label="RV动画测试"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.rv.snap.RvSnapActivity"
+            android:label="RvSnap测试类"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.rv.swipe.SwipeRecyclerViewActivity"
+            android:label="RV侧滑菜单测试"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.rv.head.HeadRecyclerViewActivity"
+            android:label="RV头/底部测试"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.rv.refresh.RefreshTestActivity"
+            android:label="刷新/加载更多测试"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.download.DownloadTestActivity"
+            android:label="下载测试类"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.download.market.DownloadMarketActivity"
+            android:label="应用市场下载类"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.download.manager.DownloadManagerActivity"
+            android:label="下载管理"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name=".ui.customview.CustomViewTestActivity"
+            android:label="自定义控件测试类"
+            android:screenOrientation="portrait">
+
+        </activity>
+
     </application>
-    <!-- 网络状态 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 震动 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- 在SDCard中创建与删除文件权限 -->
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <!-- 前台通知 -->
-    <uses-permission
-        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
-        tools:ignore="ProtectedPermissions" />
 
-    <!-- ********************* 需要申请（只要同组有一个授权整组的权限都可以使用） ********************* -->
-    <!-- 相机 -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <!--允许读取手机信息权限-->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!-- 写存储 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!-- 读存储 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>

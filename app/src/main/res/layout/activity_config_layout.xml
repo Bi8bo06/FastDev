@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.liangliang.android.component.widget.base.TitleBarLayout
+        android:id="@+id/title_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backDrawable="@drawable/ic_launcher"
+        app:backText="返回"
+        app:backTextColor="@color/white"
+        app:backTextSize="16sp"
+        app:divideLineColor="@color/color_d28928"
+        app:divideLineHeight="10dp"
+        app:elevationVale="15dp"
+        app:expandViewId="@layout/view_config_expand_layout"
+        app:isNeedBackBtn="true"
+        app:isNeedElevation="true"
+        app:isNeedExpandView="false"
+        app:isShowDivideLine="false"
+        app:titleBarBackground="@color/color_ea8380"
+        app:titleText="测试"
+        app:titleTextColor="@color/color_00a0e9"
+        app:titleTextSize="15sp">
+
+    </com.liangliang.android.component.widget.base.TitleBarLayout>
+
+    <com.liangliang.android.component.widget.MmsTabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="@color/color_00a0e9"
+        app:tabIndicatorHeight="2dp"
+        app:tabMargin="20dp"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/color_00a0e9"
+        app:tabTextColor="@color/black">
+
+    </com.liangliang.android.component.widget.MmsTabLayout>
+
+    <com.liangliang.android.component.widget.base.LoadingLayout
+        android:id="@+id/loading_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:contentBackground="@color/color_ff4081"
+        app:contentOrientation="horizontal"
+        app:indeterminateDrawable="@drawable/anims_custom_progress"
+        app:isIndeterminate="true"
+        app:isNeedTips="true"
+        app:pbHeight="50dp"
+        app:pbWidth="50dp"
+        app:tips="@string/config_base_loading_tips"
+        app:tipsColor="@color/white"
+        app:tipsSize="15sp">
+
+    </com.liangliang.android.component.widget.base.LoadingLayout>
+
+    <com.liangliang.android.component.widget.base.NoDataLayout
+        android:id="@+id/no_data_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:contentBackground="@color/color_ea8380"
+        app:contentOrientation="horizontal"
+        app:isNeedImg="true"
+        app:isNeedTips="true"
+        app:src="@drawable/ic_launcher"
+        app:tips="@string/config_base_no_data_tips"
+        app:tipsColor="@color/color_ffa630"
+        app:tipsSize="22sp">
+
+    </com.liangliang.android.component.widget.base.NoDataLayout>
+
+    <com.liangliang.android.component.widget.base.ErrorLayout
+        android:id="@+id/error_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:contentBackground="@color/color_ffa630"
+        app:contentOrientation="vertical"
+        app:isNeedImg="true"
+        app:isNeedTips="true"
+        app:src="@drawable/ic_launcher"
+        app:tips="@string/config_base_fail_tips"
+        app:tipsColor="@color/color_ea413c"
+        app:tipsSize="18sp">
+
+    </com.liangliang.android.component.widget.base.ErrorLayout>
+
+</LinearLayout>

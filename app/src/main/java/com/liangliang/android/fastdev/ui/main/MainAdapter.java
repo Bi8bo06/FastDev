@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.liangliang.android.component.widget.recycler.BaseRecyclerViewAdapter;
+import com.liangliang.android.component.widget.adapter.recycler.BaseRecyclerViewAdapter;
 import com.liangliang.android.core.utils.ScreenUtils;
 import com.liangliang.android.fastdev.R;
 import com.liangliang.android.fastdev.bean.MainBean;

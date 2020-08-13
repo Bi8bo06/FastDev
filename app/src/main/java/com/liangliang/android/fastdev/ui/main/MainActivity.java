@@ -14,17 +14,35 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.liangliang.android.component.base.activity.BaseActivity;
 import com.liangliang.android.component.widget.adapter.decoration.SectionItemDecoration;
 import com.liangliang.android.component.widget.adapter.decoration.StickyItemDecoration;
+import com.liangliang.android.component.widget.adapter.recycler.BaseRecyclerViewAdapter;
 import com.liangliang.android.component.widget.base.TitleBarLayout;
 import com.liangliang.android.component.widget.index.IndexBar;
-import com.liangliang.android.component.widget.recycler.BaseRecyclerViewAdapter;
 import com.liangliang.android.core.utils.ArrayUtils;
 import com.liangliang.android.core.utils.DensityUtils;
 import com.liangliang.android.fastdev.App;
 import com.liangliang.android.fastdev.R;
 import com.liangliang.android.fastdev.bean.MainBean;
+import com.liangliang.android.fastdev.ui.admin.AdminTestActivity;
+import com.liangliang.android.fastdev.ui.config.ConfigLayoutActivity;
+import com.liangliang.android.fastdev.ui.customview.CustomViewTestActivity;
+import com.liangliang.android.fastdev.ui.design.cardview.CardViewTestActivity;
+import com.liangliang.android.fastdev.ui.design.coordinator.CoordinatorTestActivity;
 import com.liangliang.android.fastdev.ui.dialog.DialogTestActivity;
+import com.liangliang.android.fastdev.ui.download.DownloadTestActivity;
+import com.liangliang.android.fastdev.ui.drawer.DrawerTestActivity;
 import com.liangliang.android.fastdev.ui.idcard.IdcardTestActivity;
 import com.liangliang.android.fastdev.ui.image.GlideActivity;
+import com.liangliang.android.fastdev.ui.keyboard.KeyboardTestActivity;
+import com.liangliang.android.fastdev.ui.notification.NotificationActivity;
+import com.liangliang.android.fastdev.ui.photopicker.PhotoPickerTestActivity;
+import com.liangliang.android.fastdev.ui.retrofit.RetrofitTestActivity;
+import com.liangliang.android.fastdev.ui.rv.anim.AnimRecyclerViewActivity;
+import com.liangliang.android.fastdev.ui.rv.drag.DragRecyclerViewActivity;
+import com.liangliang.android.fastdev.ui.rv.head.HeadRecyclerViewActivity;
+import com.liangliang.android.fastdev.ui.rv.refresh.RefreshTestActivity;
+import com.liangliang.android.fastdev.ui.rv.snap.RvSnapActivity;
+import com.liangliang.android.fastdev.ui.rv.swipe.SwipeRecyclerViewActivity;
+import com.liangliang.android.fastdev.ui.security.EncryptTestActivity;
 import com.liangliang.android.fastdev.ui.toast.ToastTestActivity;
 
 import java.util.Arrays;
@@ -54,10 +72,28 @@ public class MainActivity extends BaseActivity {
             "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#"};
 
     private static final List<MainBean> MAIN_DATA_LIST = Arrays.asList(
+            new MainBean("侧滑栏测试类", "C", DrawerTestActivity.class),
+            new MainBean("CardView测试类", "C", CardViewTestActivity.class),
+            new MainBean("Coordinator测试类", "C", CoordinatorTestActivity.class),
             new MainBean("Glide测试", "G", GlideActivity.class),
+            new MainBean("加密测试类", "J", EncryptTestActivity.class),
+            new MainBean("基础控件配置", "J", ConfigLayoutActivity.class),
+            new MainBean("RV拖拽测试", "R", DragRecyclerViewActivity.class),
+            new MainBean("RV动画测试", "R", AnimRecyclerViewActivity.class),
+            new MainBean("RvSnap测试类", "R", RvSnapActivity.class),
+            new MainBean("RV侧滑菜单测试", "R", SwipeRecyclerViewActivity.class),
+            new MainBean("RV带头/底部测试", "R", HeadRecyclerViewActivity.class),
+            new MainBean("RV刷新/加载更多测试", "R", RefreshTestActivity.class),
+            new MainBean("Retrofit测试", "R", RetrofitTestActivity.class),
+            new MainBean("设备管理功能测试", "S", AdminTestActivity.class),
             new MainBean("身份证号码测试类", "S", IdcardTestActivity.class),
             new MainBean("弹框测试", "T", DialogTestActivity.class),
-            new MainBean("Toast测试类", "T", ToastTestActivity.class)
+            new MainBean("通知测试", "T", NotificationActivity.class),
+            new MainBean("Toast测试类", "T", ToastTestActivity.class),
+            new MainBean("下载测试类", "X", DownloadTestActivity.class),
+            new MainBean("照片选择器测试", "Z", PhotoPickerTestActivity.class),
+            new MainBean("自定义控件测试类", "Z", CustomViewTestActivity.class),
+            new MainBean("自定义键盘测试类", "Z", KeyboardTestActivity.class)
     );
 
     /**

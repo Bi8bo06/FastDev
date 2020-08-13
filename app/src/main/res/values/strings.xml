@@ -50,4 +50,84 @@
     <string name="idcard_check">校验</string>
     <string name="idcard_empty_tips">请输入身份证号</string>
     <string name="idcard_length_error">请输入18位身份证号</string>
+
+    <!-- 加密测试 -->
+    <string name="security_hint">请输入加密内容</string>
+    <string name="security_AES_encrypt">AES加密</string>
+    <string name="security_AES_decrypt">AES解密</string>
+    <string name="security_AES_init">AES秘钥初始化</string>
+    <string name="security_RSA_encrypt">RSA公钥加密</string>
+    <string name="security_RSA_decrypt">RSA私钥解密</string>
+    <string name="security_RSA_init">RSA秘钥初始化</string>
+    <string name="security_MD5_btn">MD5信息摘要</string>
+    <string name="security_SHA1_btn">SHA1信息摘要</string>
+    <string name="security_clean">清空</string>
+
+    <!-- 照片选择器 -->
+    <string name="photo_picker_take">选择照片</string>
+    <string name="photo_picker_preview">预览图片</string>
+    <string name="photo_picker_take_photo">拍照</string>
+    <string name="photo_picker_get_nine_pic">获取九宫格数据</string>
+
+    <!-- 基础控件配置测试类 -->
+    <string name="config_base_no_data">无数据</string>
+    <string name="config_base_no_data_tips">没黄鳝怎么直播啊！？</string>
+    <string name="config_base_loading">加载</string>
+    <string name="config_base_loading_tips">前方高能预警</string>
+    <string name="config_base_fail">失败</string>
+    <string name="config_base_fail_tips">加载不出来，你心里没点B数吗！？</string>
+
+    <!-- CoordinatorLayout测试 -->
+    <string name="coordinator_collapsing">折叠</string>
+
+    <!-- RecyclerView拖拽测试 -->
+    <string name="drag_orientation">方向</string>
+    <string name="drag_layout_manager">布局</string>
+    <string name="drag_vertical">纵向</string>
+    <string name="drag_horizontal">横向</string>
+    <string name="drag_linear_layout_manager">线性布局</string>
+    <string name="drag_grid_layout_manager">网格布局</string>
+    <string name="drag_staggered_grid_layout_manager">瀑布流</string>
+
+    <!-- RecyclerView动画测试 -->
+    <string name="rvanim_reset">重置</string>
+    <string name="rvanim_popup_name">动画</string>
+    <string name="rvanim_popup_alpha_in">淡入</string>
+    <string name="rvanim_popup_scale_in">缩放</string>
+    <string name="rvanim_popup_slide_in_bottom">底部进入</string>
+    <string name="rvanim_popup_slide_in_left">左侧进入</string>
+    <string name="rvanim_popup_slide_in_right">右侧进入</string>
+    <string name="rvanim_popup_custom">自定义</string>
+
+    <!-- 带头部和底部的RecyclerView测试 -->
+    <string name="rvhead_header">头部</string>
+    <string name="rvhead_footer">底部</string>
+    <string name="rvhead_header_tips">宝宝是头布局</string>
+    <string name="rvhead_footer_tips">宝宝是腿布局</string>
+    <string name="rvhead_item_long_click_tips">死变态 快松手啊</string>
+    <string name="rvhead_header_long_click_tips">官人按得好紧呀 ~.~ </string>
+    <string name="rvhead_footer_long_click_tips">客官不可以</string>
+
+    <!-- 刷新/加载更多测试 -->
+    <string name="rvrefresh_load_fail">加载失败</string>
+    <string name="rvrefresh_delete">朵蜜我吧</string>
+    <string name="rvrefresh_refresh_fail">刷新失败啦</string>
+
+    <!-- 应用市场下载测试 -->
+    <string name="market_title">应用市场</string>
+    <string name="market_download">下载</string>
+    <string name="market_pause">暂停</string>
+    <string name="market_waiting">等待中</string>
+    <string name="market_delete">删除</string>
+    <string name="market_install">安装</string>
+    <string name="market_open">打开</string>
+    <string name="market_downloading">下载中</string>
+    <string name="market_download_fail">下载失败</string>
+    <string name="market_already_pause">已暂停</string>
+    <string name="market_installing">安装中</string>
+    <string name="market_app_content">应用内容描述</string>
+    <string name="download_manager_title">下载管理</string>
+    <string name="download_manager_start_all">全部开始</string>
+    <string name="download_manager_pause_all">全部暂停</string>
+    <string name="download_manager_delete_all">全部删除</string>
 </resources>

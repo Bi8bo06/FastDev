@@ -13,6 +13,13 @@
     <attr name="isNeedImg" format="boolean" />
     <attr name="src" format="reference" />
 
+    <!--侧滑菜单-->
+    <declare-styleable name="SwipeMenuLayout">
+        <attr name="leftViewId" format="reference" />
+        <attr name="rightViewId" format="reference" />
+        <attr name="contentViewId" format="reference" />
+    </declare-styleable>
+
     <!--加载页-->
     <declare-styleable name="LoadingLayout">
         <attr name="contentOrientation" />
@@ -108,6 +115,24 @@
         <attr name="inputTextSize" format="dimension" />
         <attr name="isShowVerticalLine" format="boolean" />
         <attr name="verticalLineBackground" format="reference|color" />
+    </declare-styleable>
+
+    <!--自定义TabLayout-->
+    <declare-styleable name="MmsTabLayout">
+        <attr name="tabMargin" format="dimension" />
+    </declare-styleable>
+
+    <!--图片九宫格-->
+    <declare-styleable name="NineGridView">
+        <attr name="isNeedDrag" format="boolean" />
+        <attr name="isNeedDragVibrate" format="boolean" />
+        <attr name="isNeedAddBtn" format="boolean" />
+        <attr name="addBtnDrawable" format="reference" />
+        <attr name="isShowDeleteBtn" format="boolean" />
+        <attr name="deleteDrawable" format="reference" />
+        <attr name="maxPic" format="integer" />
+        <attr name="spanCount" format="integer" />
+        <attr name="itemHigh" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="IndexBar">
